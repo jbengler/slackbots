@@ -1,0 +1,40 @@
+on:
+  push:
+    branches: master
+
+jobs:
+  run-birthday-bot:
+    runs-on: ubuntu-20.04
+    container: rocker/tidyverse:4.2.1
+    env:
+      INIMS_SHEETS_BIRTHDAYS: ${{ secrets.INIMS_SHEETS_BIRTHDAYS }}
+      INIMS_SHEETS_GOOGLE_MAIL: ${{ secrets.INIMS_SHEETS_GOOGLE_MAIL }}
+      INIMS_SLACK_TEST_HOOK: ${{ secrets.INIMS_SLACK_TEST_HOOK }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name : Update
+        run: apt-get update
+
+      - name: Install curl
+        run: apt-get install -y curl
+
+      - name: Install gpg
+        run: apt-get install -y gnupg2
+
+      - name: Decrypt large secret
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" --output ./inims_sheets.json ./inims_sheets.json.gpg
+        env:
+          ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
+
+      - name: Install packages
+        run: |
+          remotes::install_cran("stringi")
+          remotes::install_cran("googlesheets4")
+        shell: Rscript {0}
+
+      - name: Run script
+        run: |-
+          Rscript R/birthday_bot.R
