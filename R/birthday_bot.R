@@ -11,14 +11,14 @@ df <- read_sheet(Sys.getenv("INIMS_SHEETS_BIRTHDAYS"))
 
 today <- paste0(as.numeric(format(Sys.Date(), "%m")),"_",as.numeric(format(Sys.Date(), "%d")))
 
-name <- 
-  df %>% 
-  filter(Date == today) %>% 
+name <-
+  df %>%
+  filter(Date == today) %>%
   pull(Name)
 
 for (i in name) {
   message <- paste0("Today is the birthday of *",i,"* :tada:")
   cmd <- paste0("curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"", message ,"\"}' ",
-                Sys.getenv("INIMS_SLACK_TEST_HOOK"))
+                Sys.getenv("INIMS_SLACK_TEST_HOOK_BIRTHDAY"))
   cmd %>% system
 }
