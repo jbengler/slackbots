@@ -29,7 +29,7 @@ jobs:
       - name: Install packages
         run: |
           remotes::install_cran("stringi")
-          remotes::install_github("tidyverse/googlesheets4")
+          remotes::install_cran("googlesheets4")
         shell: Rscript {0}
 
       - name: Run script
