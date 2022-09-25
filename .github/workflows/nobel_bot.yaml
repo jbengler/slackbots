@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name : Update
-        run: apt-get update
+      # - name : Update
+      #   run: apt-get update
 
       # - name: Install gpg
       #   run: apt-get install -y gnupg2
