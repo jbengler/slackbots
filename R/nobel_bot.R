@@ -1,5 +1,4 @@
 
-
 # this is needed to allow special characters in names in Rscript execution
 # Sys.setlocale(category = "LC_CTYPE", locale = "de_DE.UTF-8")
 
