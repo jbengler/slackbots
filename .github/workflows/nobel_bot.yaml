@@ -14,12 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name : Update
-      #   run: apt-get update
+      - name : Update
+        run: apt-get update
 
-      # - name: Install gpg
-      #   run: apt-get install -y gnupg2
-      #
+      - name: Install curl
+        run: apt-get install -y curl
+
+      - name: Install gpg
+        run: apt-get install -y gnupg2
+
       # - name: Decrypt large secret
       #   run: |
       #     gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" --output ./rrutweets-sheet.json ./rrutweets-sheet.json.gpg
