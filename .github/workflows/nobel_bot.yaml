@@ -9,7 +9,8 @@ jobs:
     env:
       INIMS_SHEETS_BIRTHDAYS: ${{ secrets.INIMS_SHEETS_BIRTHDAYS }}
       INIMS_SHEETS_GOOGLE_MAIL: ${{ secrets.INIMS_SHEETS_GOOGLE_MAIL }}
-      INIMS_SLACK_TEST_HOOK: ${{ secrets.INIMS_SLACK_TEST_HOOK }}
+      INIMS_SLACK_HOOK_NOBEL_TEST: ${{ secrets.INIMS_SLACK_HOOK_NOBEL_TEST }}
+      INIMS_SLACK_HOOK_NOBEL_NOBEL: ${{ secrets.INIMS_SLACK_HOOK_NOBEL_NOBEL }}
 
     steps:
       - uses: actions/checkout@v2

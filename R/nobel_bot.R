@@ -30,6 +30,6 @@ win <-
 message <- paste0(win$names,
 " received _",win$prize,"_ ",str_replace_all(win$motivation, "\"", ""),".")
 cmd <- paste0("curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"", message ,"\"}' ",
-              Sys.getenv("INIMS_SLACK_TEST_HOOK"))
+              Sys.getenv("INIMS_SLACK_HOOK_NOBEL_NOBEL"))
 cmd
 cmd %>% system
