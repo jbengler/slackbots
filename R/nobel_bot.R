@@ -1,9 +1,8 @@
 
-# this is needed to allow special characters in names in Rscript execution
-# Sys.setlocale(category = "LC_CTYPE", locale = "de_DE.UTF-8")
-
 library(tidyverse)
 library(stringi)
+
+Sys.time()
 
 # nobel_winners <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-05-14/nobel_winners.csv")
 # nobel_winner_all_pubs <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-05-14/nobel_winner_all_pubs.csv")

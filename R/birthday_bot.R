@@ -1,12 +1,10 @@
 
-# this is needed to allow special characters in names in Rscript execution
-# Sys.setlocale(category = "LC_CTYPE", locale = "de_DE.UTF-8")
-
 library(tidyverse)
 library(googlesheets4)
 
-googlesheets4::gs4_auth(email = Sys.getenv("INIMS_SHEETS_GOOGLE_MAIL"), path = "inims_sheets.json")
+Sys.time()
 
+googlesheets4::gs4_auth(email = Sys.getenv("INIMS_SHEETS_GOOGLE_MAIL"), path = "inims_sheets.json")
 df <- read_sheet(Sys.getenv("INIMS_SHEETS_BIRTHDAYS"))
 
 today <- paste0(format(Sys.Date(), "%m"),"_",format(Sys.Date(), "%d"))
