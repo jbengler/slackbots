@@ -1,6 +1,10 @@
+# on:
+#   push:
+#     branches: master
+# every morning at 8:00h (UTC+2)
 on:
-  push:
-    branches: master
+  schedule:
+  - cron: "0 10 * * *"
 
 jobs:
   run-nobel-bot:

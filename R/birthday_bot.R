@@ -19,6 +19,6 @@ name <-
 for (i in name) {
   message <- paste0("Today is the birthday of *",i,"* :tada:")
   cmd <- paste0("curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"", message ,"\"}' ",
-                Sys.getenv("INIMS_SLACK_HOOK_BIRTHDAY_TEST"))
+                Sys.getenv("INIMS_SLACK_HOOK_BIRTHDAY_SOCIAL"))
   cmd %>% system
 }
