@@ -4,7 +4,7 @@
 # every morning at 8:00h (UTC+2)
 on:
   schedule:
-  - cron: "0 10 * * *"
+  - cron: "0 6 * * *"
 
 jobs:
   run-nobel-bot:
