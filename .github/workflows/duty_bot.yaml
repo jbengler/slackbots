@@ -1,0 +1,47 @@
+# on:
+#   push:
+#     branches: master
+# every Monday morning at 8:00h (UTC+2)
+on:
+  schedule:
+  - cron: "0 5 * * *"
+
+jobs:
+  run-birthday-bot:
+    runs-on: ubuntu-20.04
+    container: rocker/tidyverse:4.2.1
+    env:
+      INIMS_SHEETS_DUTIES: ${{ secrets.INIMS_SHEETS_DUTIES }}
+      INIMS_SHEETS_GOOGLE_MAIL: ${{ secrets.INIMS_SHEETS_GOOGLE_MAIL }}
+      INIMS_SLACK_HOOK_DUTIES_TEST: ${{ secrets.INIMS_SLACK_HOOK_DUTIES_TEST }}
+      INIMS_SLACK_HOOK_DUTIES_GENERAL: ${{ secrets.INIMS_SLACK_HOOK_DUTIES_GENERAL }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name : Update
+        run: apt-get update
+
+      - name: Install curl
+        run: apt-get install -y curl
+
+      - name: Install gpg
+        run: apt-get install -y gnupg2
+
+      - name: Decrypt large secret
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="$ENCYRPTION_PASSPHRASE" --output ./inims_sheets.json ./inims_sheets.json.gpg
+        env:
+          ENCYRPTION_PASSPHRASE: ${{ secrets.ENCYRPTION_PASSPHRASE }}
+
+      - name: Install packages
+        run: |
+          remotes::install_cran("stringi")
+          remotes::install_cran("googlesheets4")
+          remotes::install_cran("glue")
+          remotes::install_cran("lubridate")
+        shell: Rscript {0}
+
+      - name: Run script
+        run: |-
+          Rscript R/duty_bot.R
