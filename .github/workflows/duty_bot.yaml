@@ -7,7 +7,7 @@ on:
   - cron: "0 5 * * 1"
 
 jobs:
-  run-birthday-bot:
+  run-duty-bot:
     runs-on: ubuntu-20.04
     container: rocker/tidyverse:4.2.1
     env:
