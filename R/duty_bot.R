@@ -18,9 +18,12 @@ message <-
 
 :mouse: mouse room: *{mouse_room}*
 :petri_dish: mouse cell culture: *{mouse_cell_culture}*
-:coffee: coffee machine: *{coffee}*")) %>%
+:lab_coat: human cell culture: *{human_cell_culture}*
+:coffee: coffee machine: *{coffee}*
+
+Check the duty list here: https://docs.google.com/spreadsheets/d/10n_hMZ7LWu2-pbI0l49zBAQUoZp0Ie7EJ7g-Vrtue8Y/edit#gid=0")) %>%
   pull(message)
 
 cmd <- paste0("curl -X POST -H 'Content-type: application/json' --data '{\"text\":\"", message ,"\"}' ",
-                Sys.getenv("INIMS_SLACK_HOOK_DUTIES_TEST"))
+                Sys.getenv("INIMS_SLACK_HOOK_DUTIES_GENERAL"))
 cmd %>% system
