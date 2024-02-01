@@ -4,7 +4,7 @@
 # every Monday morning at 8:00h (UTC+2)
 on:
   schedule:
-  - cron: "0 5 * * 1,4"
+  - cron: "0 5 * * 1"
 
 jobs:
   run-birthday-bot:
