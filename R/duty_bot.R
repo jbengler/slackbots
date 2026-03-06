@@ -18,7 +18,7 @@ message <-
 
 :mouse: mouse room: *{mouse_room}*
 :petri_dish: mouse cell culture weekly refill: *{mouse_cell_culture}*
-:petri_dish: mouse cell culture monthly cleaning: *{mouse_cell_culture_cleaning}*
+:sponge: mouse cell culture monthly cleaning: *{mouse_cell_culture_cleaning}*
 :lab_coat: human cell culture: *{human_cell_culture}*
 :coffee: coffee machine: *{coffee}*
 
