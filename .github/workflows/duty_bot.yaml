@@ -27,7 +27,7 @@ jobs:
         run: apt-get install -y curl
 
       - name: Install gpg
-        run: apt-get install -y gnupg2
+        run: apt-get install -y gnupg
 
       - name: Decrypt large secret
         run: |
