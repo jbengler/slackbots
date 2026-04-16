@@ -18,7 +18,7 @@ jobs:
       INIMS_SLACK_HOOK_NOBEL_NOBEL: ${{ secrets.INIMS_SLACK_HOOK_NOBEL_NOBEL }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name : Update
         run: apt-get update
