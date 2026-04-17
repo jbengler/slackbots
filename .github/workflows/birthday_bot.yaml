@@ -9,9 +9,10 @@ on:
 
 jobs:
   run-birthday-bot:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container: rocker/tidyverse:4.4.2
     env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       INIMS_SHEETS_BIRTHDAYS: ${{ secrets.INIMS_SHEETS_BIRTHDAYS }}
       INIMS_SHEETS_GOOGLE_MAIL: ${{ secrets.INIMS_SHEETS_GOOGLE_MAIL }}
       INIMS_SLACK_HOOK_BIRTHDAY_SOCIAL: ${{ secrets.INIMS_SLACK_HOOK_BIRTHDAY_SOCIAL }}
@@ -20,14 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name : Update
-        run: apt-get update
-
-      - name: Install curl
-        run: apt-get install -y curl
-
-      - name: Install gpg
-        run: apt-get install -y gnupg
+      - name: Install system dependencies
+        run: |
+          for i in 1 2 3; do
+            apt-get update && apt-get install -y curl gnupg && break || sleep 15
+          done
 
       - name: Decrypt large secret
         run: |
