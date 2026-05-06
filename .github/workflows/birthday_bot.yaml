@@ -4,7 +4,7 @@
 # every morning at 8:00h (UTC+2)
 on:
   schedule:
-  - cron: "17 4 * * *"
+  - cron: "17 3 * * *"
   workflow_dispatch:
 
 jobs:
